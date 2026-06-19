@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Beauty Care Assessment</title>
+
+<!-- Fonts -->
+
+   <link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(to bottom, #ffe4ec, #ffd1e0);
+        color: #333;
+    }
+
+    /* Top Header */
+    .header {
+        text-align: center;
+        padding: 20px;
+        background: #ffe9f1;
+    }
+
+    .header h1 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 36px;
+        color: #c2185b;
+        margin: 0;
+    }
+
+    /* Main Title */
+    h2 {
+        text-align: center;
+        color: #8a2b55;
+        margin-top: 20px;
+        font-weight: 600;
+    }
+
+    /* Quiz Container */
+    .container {
+        width: 90%;
+        max-width: 600px;
+        margin: 30px auto;
+        background: #fff;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .question {
+        margin-bottom: 25px;
+    }
+
+    .question h3 {
+        color: #c2185b;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    /* Options */
+    label {
+        display: block;
+        background: #fff0f5;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: 0.2s;
+        border: 1px solid transparent;
+    }
+
+    label:hover {
+        border-color: #d81b60;
+        transform: scale(1.01);
+    }
+
+    input[type="radio"] {
+        margin-right: 10px;
+        accent-color: #d81b60;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        background: #d81b60;
+        color: white;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        background: #b31550;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Britani R's Beauty Care Assessment</h1>
+
+<img src="images/skin-care-routine.jpg" alt="Assessment Banner">
+
+</div>
+
+<h2>Find Your Beauty Style</h2>
+
+<div class="container">
+
+    <!-- Question 1 -->
+    <div class="question">
+        <h3>1. What is your skincare goal?</h3>
+        <label><input type="radio" name="q1"> Hydrate</label>
+        <label><input type="radio" name="q1"> Glow</label>
+        <label><input type="radio" name="q1"> Clear</label>
+        <label><input type="radio" name="q1"> Smooth</label>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question">
+        <h3>2. What is your primary skin type?</h3>
+        <label><input type="radio" name="q2"> Oily</label>
+        <label><input type="radio" name="q2"> Dry</label>
+        <label><input type="radio" name="q2"> Combination</label>
+        <label><input type="radio" name="q2"> Normal</label>
+    </div>
+
+    <button type="button">Submit</button>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Quiz Results</title>
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<main>
+
+<h1>Your Skincare Profile</h1>
+
+<div class="result-card">
+    <h2>Your Skin Recommendation</h2>
+    <h3 id="result-title"></h3>
+    <p id="result-description"></p>
+</div>
+
+<a href="quiz.html">← Retake Quiz</a>
+
+</main>
+
+<script>
+// Get saved answer
+let answer = localStorage.getItem("question1");
+
+let resultTitle = "";
+let resultDescription = "";
+
+if (answer === "hydrate") {
+    resultTitle = "Hydration Focused Skin";
+    resultDescription = "You need moisture-boosting ingredients.";
+}
+else if (answer === "glow") {
+    resultTitle = "Radiant Glow Skin";
+    resultDescription = "You will benefit from Vitamin C and Niacinamide.";
+}
+else if (answer === "clear") {
+    resultTitle = "Clear Skin Focus";
+    resultDescription = "We recommend salicylic acid and gentle cleansing.";
+}
+else if (answer === "smooth") {
+    resultTitle = "Smooth Skin Focus";
+    resultDescription = "Use gentle exfoliation and hydrating moisturizer.";
+}
+else {
+    resultTitle = "No Result Found";
+    resultDescription = "Please retake the quiz and select an answer.";
+}
+
+// Display results
+document.getElementById("result-title").textContent = resultTitle;
+document.getElementById("result-description").textContent = resultDescription;
+
+</script>
+
+</body>
+</html>

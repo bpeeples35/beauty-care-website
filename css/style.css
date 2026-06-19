@@ -1,0 +1,72 @@
+/* =========================
+   GOOGLE FONT (CURSIVE + CLEAN)
+========================= */
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Poppins:wght@300;400;500;600&display=swap');
+
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   BODY
+========================= */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffe6f0, #f8d7e3, #f3e7ff);
+    color: #333;
+    min-height: 100vh;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    text-align: center;
+    padding: 30px 15px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+header h1 {
+    font-family: 'Allura', cursive;
+    font-size: 48px;
+    color: #ce7aa4;
+}
+
+img {
+    width: 100%;
+    max-width: 850px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+main {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+section {
+    width: 100%;
+    max-width: 850px;
+}
+
+/* =========================
+   SECTION TITLE
+========================= */
+section h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+    color: #ce7aa4;
+}
