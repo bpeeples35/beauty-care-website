@@ -1,143 +1,1409 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Beauty Care Assessment</title>
 
-<!-- Fonts -->
-
-   <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
-    body {
-        margin: 0;
-        font-family: 'Poppins', sans-serif;
-        background: linear-gradient(to bottom, #ffe4ec, #ffd1e0);
-        color: #333;
-    }
 
-    /* Top Header */
-    .header {
-        text-align: center;
-        padding: 20px;
-        background: #ffe9f1;
-    }
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #ffe4ec, #ffd1e0);
+    color: #333;
+}
 
-    .header h1 {
-        font-family: 'Great Vibes', cursive;
-        font-size: 36px;
-        color: #c2185b;
-        margin: 0;
-    }
+.header {
+    text-align: center;
+    padding: 20px;
+    background: #ffe9f1;
+}
 
-    /* Main Title */
-    h2 {
-        text-align: center;
-        color: #8a2b55;
-        margin-top: 20px;
-        font-weight: 600;
-    }
+.header h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 36px;
+    color: #c2185b;
+    margin: 0;
+}
 
-    /* Quiz Container */
-    .container {
-        width: 90%;
-        max-width: 600px;
-        margin: 30px auto;
-        background: #fff;
-        border-radius: 12px;
-        padding: 25px;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    }
+.header img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 12px;
+    margin-top: 15px;
+}
 
-    .question {
-        margin-bottom: 25px;
-    }
+h2 {
+    text-align: center;
+    color: #8a2b55;
+    margin-top: 20px;
+}
 
-    .question h3 {
-        color: #c2185b;
-        font-size: 16px;
-        margin-bottom: 10px;
-    }
+.container {
+    width: 90%;
+    max-width: 600px;
+    margin: 30px auto;
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
 
-    /* Options */
-    label {
-        display: block;
-        background: #fff0f5;
-        padding: 12px;
-        border-radius: 8px;
-        margin-bottom: 10px;
-        cursor: pointer;
-        transition: 0.2s;
-        border: 1px solid transparent;
-    }
+.question {
+    margin-bottom: 25px;
+}
 
-    label:hover {
-        border-color: #d81b60;
-        transform: scale(1.01);
-    }
+.question h3 {
+    color: #c2185b;
+    font-size: 16px;
+}
 
-    input[type="radio"] {
-        margin-right: 10px;
-        accent-color: #d81b60;
-    }
+label {
+    display: block;
+    background: #fff0f5;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
 
-    button {
-        width: 100%;
-        padding: 12px;
-        border: none;
-        background: #d81b60;
-        color: white;
-        font-size: 16px;
-        border-radius: 8px;
-        cursor: pointer;
-        margin-top: 10px;
-    }
+label:hover {
+    border-color:#d81b60;
+}
 
-    button:hover {
-        background: #b31550;
-    }
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right:10px;
+    accent-color:#d81b60;
+}
+
+button {
+
+    width:100%;
+    padding:12px;
+    border:none;
+    background:#d81b60;
+    color:white;
+    font-size:16px;
+    border-radius:8px;
+    cursor:pointer;
+
+}
+
+button:hover {
+
+background:#b31550;
+
+}
 
 </style>
+
 </head>
+
 
 <body>
 
-<div class="header">
-    <h1>Britani R's Beauty Care Assessment</h1>
 
-<img src="images/skin-care-routine.jpg" alt="Assessment Banner">
+<div class="header">
+
+<h1>Britani R's Beauty Care Assessment</h1>
+
+<img src="images/skin care routine.jpg" 
+alt="Beauty Care Assessment">
 
 </div>
+
 
 <h2>Find Your Beauty Style</h2>
 
+
 <div class="container">
 
-    <!-- Question 1 -->
-    <div class="question">
-        <h3>1. What is your skincare goal?</h3>
-        <label><input type="radio" name="q1"> Hydrate</label>
-        <label><input type="radio" name="q1"> Glow</label>
-        <label><input type="radio" name="q1"> Clear</label>
-        <label><input type="radio" name="q1"> Smooth</label>
-    </div>
 
-    <!-- Question 2 -->
-    <div class="question">
-        <h3>2. What is your primary skin type?</h3>
-        <label><input type="radio" name="q2"> Oily</label>
-        <label><input type="radio" name="q2"> Dry</label>
-        <label><input type="radio" name="q2"> Combination</label>
-        <label><input type="radio" name="q2"> Normal</label>
-    </div>
+<form id="quizForm">
 
-    <button type="button">Submit</button>
+
+<!-- QUESTION 1 -->
+
+<div class="question">
+
+<h3>1. What is your age range?</h3>
+
+<label>
+<input type="radio" name="q1" value="Under 25" required>
+Under 25
+</label>
+
+<label>
+<input type="radio" name="q1" value="25-35">
+25-35
+</label>
+
+<label>
+<input type="radio" name="q1" value="36-45">
+36-45
+</label>
+
+<label>
+<input type="radio" name="q1" value="46-55">
+46-55
+</label>
+
+<label>
+<input type="radio" name="q1" value="Over 55">
+Over 55
+</label>
 
 </div>
 
+
+
+<!-- QUESTION 2 -->
+
+<div class="question">
+
+<h3>2. What is your skincare goal?</h3>
+
+<label>
+<input type="radio" name="q2" value="Anti Aging" required>
+Prevent signs of aging
+</label>
+
+<label>
+<input type="radio" name="q2" value="Acne">
+Clear acne and breakouts
+</label>
+
+<label>
+<input type="radio" name="q2" value="Hydration">
+Hydrate and nourish skin
+</label>
+
+<label>
+<input type="radio" name="q2" value="Brightening">
+Bright and even skin tone
+</label>
+
+<label>
+<input type="radio" name="q2" value="Healthy Skin">
+Maintain healthy skin
+</label>
+
+</div>
+
+
+
+
+<!-- QUESTION 3 -->
+
+<div class="question">
+
+<h3>3. What are your main skin concerns?</h3>
+
+
+<label>
+<input type="checkbox" name="concerns" value="Acne">
+Acne and Breakouts
+</label>
+
+
+<label>
+<input type="checkbox" name="concerns" value="Dark Spots">
+Dark spots and hyperpigmentation
+</label>
+
+
+<label>
+<input type="checkbox" name="concerns" value="Dull Skin">
+Dullness and lack of glow
+</label>
+
+
+<label>
+<input type="checkbox" name="concerns" value="Wrinkles">
+Fine lines and wrinkles
+</label>
+
+
+<label>
+<input type="checkbox" name="concerns" value="Texture">
+Uneven skin texture
+</label>
+
+
+<label>
+<input type="checkbox" name="concerns" value="Under Eye">
+Under-eye circles and puffiness
+</label>
+
+
+<label>
+<input type="checkbox" name="concerns" value="Sensitive">
+Sensitivity and redness
+</label>
+
+
+<label>
+<input type="checkbox" name="concerns" value="Firmness">
+Loss of firmness/sagging
+</label>
+
+
+<label>
+<input type="checkbox" name="concerns" value="Pores">
+Large pores
+</label>
+
+
+</div>
+
+
+
+
+
+<!-- QUESTION 4 -->
+
+<div class="question">
+
+<h3>4. How would you describe your pores?</h3>
+
+
+<label>
+<input type="radio" name="q4" value="Small" required>
+Almost invisible
+</label>
+
+
+<label>
+<input type="radio" name="q4" value="Fine">
+Small and fine
+</label>
+
+
+<label>
+<input type="radio" name="q4" value="Normal">
+Visible and normal
+</label>
+
+
+<label>
+<input type="radio" name="q4" value="Large">
+Large and noticeable
+</label>
+
+
+<label>
+<input type="radio" name="q4" value="Very Large">
+Very large and often clogged
+</label>
+
+
+</div>
+
+
+
+
+
+<!-- QUESTION 5 -->
+
+<div class="question">
+
+<h3>5. How often do you exfoliate your face?</h3>
+
+
+<label>
+<input type="radio" name="q5" value="Weekly" required>
+Once a week with a gentle exfoliant
+</label>
+
+
+<label>
+<input type="radio" name="q5" value="Hydrating">
+1-2 times per week focusing on hydration
+</label>
+
+
+<label>
+<input type="radio" name="q5" value="BHA">
+2-3 times per week using BHAs
+</label>
+
+
+<label>
+<input type="radio" name="q5" value="AHA BHA">
+Alternating AHAs and BHAs
+</label>
+
+
+</div>
+
+
+
+
+
+<!-- QUESTION 6 -->
+
+<div class="question">
+
+<h3>6. How would you describe your skin texture?</h3>
+
+
+<label>
+<input type="radio" name="q6" value="Smooth" required>
+Smooth and even
+</label>
+
+
+<label>
+<input type="radio" name="q6" value="Dry">
+Dry or flaky
+</label>
+
+
+<label>
+<input type="radio" name="q6" value="Rough">
+Rough texture
+</label>
+
+
+<label>
+<input type="radio" name="q6" value="Uneven">
+Uneven texture
+</label>
+
+
+</div>
+
+
+
+
+
+<!-- QUESTION 7 -->
+
+<div class="question">
+
+<h3>7. How much time do you want to spend on skincare each day?</h3>
+
+
+<label>
+<input type="radio" name="q7" value="Minimal" required>
+Less than 5 minutes
+</label>
+
+
+<label>
+<input type="radio" name="q7" value="Moderate">
+5-10 minutes
+</label>
+
+
+<label>
+<input type="radio" name="q7" value="Advanced">
+10+ minutes
+</label>
+
+
+</div>
+
+
+
+
+
+<!-- QUESTION 8 -->
+
+<div class="question">
+
+<h3>8. How often do you experience breakouts?</h3>
+
+
+<label>
+<input type="radio" name="q8" value="Never" required>
+Never
+</label>
+
+
+<label>
+<input type="radio" name="q8" value="Rarely">
+Rarely
+</label>
+
+
+<label>
+<input type="radio" name="q8" value="Sometimes">
+Sometimes
+</label>
+
+
+<label>
+<input type="radio" name="q8" value="Frequently">
+Frequently
+</label>
+
+
+</div>
+
+
+
+
+
+<!-- QUESTION 9 -->
+
+<div class="question">
+
+<h3>9. How sensitive is your skin?</h3>
+
+
+<label>
+<input type="radio" name="q9" value="Not Sensitive" required>
+Not Sensitive
+</label>
+
+
+<label>
+<input type="radio" name="q9" value="Slightly Sensitive">
+Slightly Sensitive
+</label>
+
+
+<label>
+<input type="radio" name="q9" value="Very Sensitive">
+Very Sensitive
+</label>
+
+
+</div>
+
+
+
+
+
+<!-- QUESTION 10 -->
+
+<div class="question">
+
+<h3>10. How much water do you drink daily?</h3>
+
+
+<label>
+<input type="radio" name="q10" value="Low Water" required>
+Less than 5 cups
+</label>
+
+
+<label>
+<input type="radio" name="q10" value="Average Water">
+5-7 cups
+</label>
+
+
+<label>
+<input type="radio" name="q10" value="High Water">
+8+ cups
+</label>
+
+
+</div>
+
+<!-- QUESTION 11 -->
+
+<div class="question">
+
+<h3>11. How often do you wear makeup?</h3>
+
+<label>
+<input type="radio" name="q11" value="Never" required>
+Never
+</label>
+
+<label>
+<input type="radio" name="q11" value="Occasionally">
+Occasionally
+</label>
+
+<label>
+<input type="radio" name="q11" value="Often">
+Often
+</label>
+
+</div>
+
+
+
+
+<!-- QUESTION 12 -->
+
+<div class="question">
+
+<h3>12. How often do you exfoliate?</h3>
+
+<label>
+<input type="radio" name="q12" value="Never" required>
+Never
+</label>
+
+<label>
+<input type="radio" name="q12" value="Weekly">
+Weekly
+</label>
+
+<label>
+<input type="radio" name="q12" value="Several Times">
+Several times weekly
+</label>
+
+</div>
+
+
+
+
+
+<!-- QUESTION 13 -->
+
+<div class="question">
+
+<h3>13. What climate do you live in?</h3>
+
+
+<label>
+<input type="radio" name="q13" value="Hot Humid" required>
+Hot and humid
+</label>
+
+
+<label>
+<input type="radio" name="q13" value="Hot Dry">
+Hot and dry
+</label>
+
+
+<label>
+<input type="radio" name="q13" value="Cold">
+Cold
+</label>
+
+
+<label>
+<input type="radio" name="q13" value="Moderate">
+Moderate
+</label>
+
+
+</div>
+
+
+
+
+
+
+<!-- QUESTION 14 -->
+
+<div class="question">
+
+<h3>14. What is your monthly skincare budget?</h3>
+
+
+<label>
+<input type="radio" name="q14" value="Under25" required>
+Under $25
+</label>
+
+
+<label>
+<input type="radio" name="q14" value="25-50">
+$25-$50
+</label>
+
+
+<label>
+<input type="radio" name="q14" value="50-100">
+$50-$100
+</label>
+
+
+<label>
+<input type="radio" name="q14" value="100+">
+$100+
+</label>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- QUESTION 15 -->
+
+<div class="question">
+
+<h3>15. What beauty products interest you most?</h3>
+
+
+<label>
+<input type="radio" name="q15" value="Skincare" required>
+Skincare
+</label>
+
+
+<label>
+<input type="radio" name="q15" value="Makeup">
+Makeup
+</label>
+
+
+<label>
+<input type="radio" name="q15" value="Haircare">
+Haircare
+</label>
+
+
+<label>
+<input type="radio" name="q15" value="Bodycare">
+Bodycare
+</label>
+
+
+<label>
+<input type="radio" name="q15" value="Self Care">
+Self-care
+</label>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- QUESTION 16 -->
+
+<div class="question">
+
+<h3>16. What type of skincare routine do you prefer?</h3>
+
+
+<label>
+<input type="radio" name="q16" value="Simple" required>
+Simple routine with few products
+</label>
+
+
+<label>
+<input type="radio" name="q16" value="Balanced">
+Balanced routine with several steps
+</label>
+
+
+<label>
+<input type="radio" name="q16" value="Advanced">
+Advanced routine with treatments and serums
+</label>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- QUESTION 17 -->
+
+<div class="question">
+
+<h3>17. What result are you hoping to achieve in the next 3 months?</h3>
+
+
+<label>
+<input type="radio" name="q17" value="Clear Skin" required>
+Clear skin
+</label>
+
+
+<label>
+<input type="radio" name="q17" value="Brighter Skin">
+Brighter skin
+</label>
+
+
+<label>
+<input type="radio" name="q17" value="Anti Aging">
+Anti-aging
+</label>
+
+
+<label>
+<input type="radio" name="q17" value="Healthy Glow">
+Healthy glow
+</label>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- QUESTION 18 -->
+
+<div class="question">
+
+<h3>18. Do you prefer skincare products with a fragrance/scent?</h3>
+
+
+<label>
+<input type="radio" name="q18" value="Scented" required>
+Yes, I love scented products
+</label>
+
+
+<label>
+<input type="radio" name="q18" value="Light Scent">
+I prefer a light, natural scent
+</label>
+
+
+<label>
+<input type="radio" name="q18" value="No Preference">
+I do not have a preference
+</label>
+
+
+<label>
+<input type="radio" name="q18" value="Fragrance Free">
+No, I prefer fragrance-free products
+</label>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- QUESTION 19 -->
+
+<div class="question">
+
+<h3>19. How does your skin usually react to scented skincare products?</h3>
+
+
+<label>
+<input type="radio" name="q19" value="Handles Well" required>
+My skin handles scented products well
+</label>
+
+
+<label>
+<input type="radio" name="q19" value="Sometimes Irritated">
+Sometimes I experience irritation
+</label>
+
+
+<label>
+<input type="radio" name="q19" value="Sensitive">
+I often get redness, itching, or breakouts
+</label>
+
+
+<label>
+<input type="radio" name="q19" value="Only Fragrance Free">
+I only use fragrance-free products
+</label>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- QUESTION 20 -->
+
+<div class="question">
+
+<h3>20. What type of skincare products do you usually choose?</h3>
+
+
+<label>
+<input type="radio" name="q20" value="Sweet Scents" required>
+Products with floral, fruity, or sweet scents
+</label>
+
+
+<label>
+<input type="radio" name="q20" value="Mild Scents">
+Products with mild scents
+</label>
+
+
+<label>
+<input type="radio" name="q20" value="Unscented">
+Products labeled "unscented"
+</label>
+
+
+<label>
+<input type="radio" name="q20" value="Fragrance Free">
+Products labeled "fragrance-free"
+</label>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- QUESTION 21 -->
+
+<div class="question">
+
+<h3>21. Why do you choose scented skincare products?</h3>
+
+
+<label>
+<input type="radio" name="q21" value="Relaxing" required>
+I enjoy the relaxing/self-care experience
+</label>
+
+
+<label>
+<input type="radio" name="q21" value="Fresh">
+I like smelling fresh throughout the day
+</label>
+
+
+<label>
+<input type="radio" name="q21" value="Luxury">
+The scent makes the product feel luxurious
+</label>
+
+
+<label>
+<input type="radio" name="q21" value="No Scent">
+I do not choose scented products
+</label>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- QUESTION 22 -->
+
+<div class="question">
+
+<h3>22. Why do you prefer fragrance-free skincare products?</h3>
+
+
+<label>
+<input type="radio" name="q22" value="Sensitive Skin" required>
+My skin is sensitive
+</label>
+
+
+<label>
+<input type="radio" name="q22" value="Irritation">
+Fragrance causes irritation or dryness
+</label>
+
+
+<label>
+<input type="radio" name="q22" value="Simple Ingredients">
+I prefer simple ingredients
+</label>
+
+
+<label>
+<input type="radio" name="q22" value="No Added Scents">
+I like products without added scents
+</label>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- QUESTION 23 -->
+
+<div class="question">
+
+<h3>23. What type of scent do you enjoy most in skincare?</h3>
+
+
+<label>
+<input type="radio" name="q23" value="Floral" required>
+Floral (rose, lavender, jasmine)
+</label>
+
+
+<label>
+<input type="radio" name="q23" value="Woody">
+Earthy/Woody scents (cedarwood, sandalwood)
+</label>
+
+
+<label>
+<input type="radio" name="q23" value="Fresh">
+Fresh (citrus, cucumber, clean scents)
+</label>
+
+
+<label>
+<input type="radio" name="q23" value="Sweet">
+Sweet (vanilla, honey, fruity scents)
+</label>
+
+
+<label>
+<input type="radio" name="q23" value="Fragrance Free">
+No scent/fragrance-free
+</label>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- QUESTION 24 -->
+
+<div class="question">
+
+<h3>24. What is your biggest concern when using scented skincare?</h3>
+
+
+<label>
+<input type="radio" name="q24" value="Irritation" required>
+Skin irritation
+</label>
+
+
+<label>
+<input type="radio" name="q24" value="Allergies">
+Allergic reactions
+</label>
+
+
+<label>
+<input type="radio" name="q24" value="Strong Smells">
+Strong smells
+</label>
+
+
+<label>
+<input type="radio" name="q24" value="No Concerns">
+I do not have concerns
+</label>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- QUESTION 25 -->
+
+<div class="question">
+
+<h3>25. How often do you exfoliate your body?</h3>
+
+
+<label>
+<input type="radio" name="q25" value="2-3 Weekly" required>
+2–3 times a week
+</label>
+
+
+<label>
+<input type="radio" name="q25" value="Weekly">
+Once a week
+</label>
+
+
+<label>
+<input type="radio" name="q25" value="Occasionally">
+Occasionally when my skin feels rough
+</label>
+
+
+<label>
+<input type="radio" name="q25" value="Never">
+I rarely or never exfoliate
+</label>
+
+
+</div>
+
+
+<!-- QUESTION 26 -->
+
+<div class="question">
+
+<h3>
+26. What do you want a body scrub to help with?
+</h3>
+
+<label>
+<input type="radio" name="q26" value="Soft Skin">
+Smooth and soft skin
+</label>
+
+<label>
+<input type="radio" name="q26" value="Dry Skin">
+Dry, flaky skin
+</label>
+
+<label>
+<input type="radio" name="q26" value="Rough Areas">
+Rough areas like elbows, knees, and heels
+</label>
+
+<label>
+<input type="radio" name="q26" value="Texture">
+Improving uneven skin texture
+</label>
+
+</div>
+
+
+<!-- QUESTION 27 -->
+
+<div class="question">
+
+<h3>
+27. What type of body scrub do you prefer?
+</h3>
+
+<label>
+<input type="radio" name="q27" value="Sugar">
+Sugar scrubs with sweet scents
+</label>
+
+<label>
+<input type="radio" name="q27" value="Gentle">
+Gentle exfoliating scrubs
+</label>
+
+<label>
+<input type="radio" name="q27" value="Deep">
+Deep exfoliating scrubs for rough skin
+</label>
+
+<label>
+<input type="radio" name="q27" value="Sensitive">
+Fragrance-free scrubs for sensitive skin
+</label>
+
+</div>
+
+
+<!-- QUESTION 28 -->
+
+<div class="question">
+
+<h3>
+28. What is your biggest concern when using scented skincare?
+</h3>
+
+<label>
+<input type="radio" name="q28" value="Irritation">
+Skin irritation
+</label>
+
+<label>
+<input type="radio" name="q28" value="Allergies">
+Allergic reactions
+</label>
+
+<label>
+<input type="radio" name="q28" value="Strong Smell">
+Strong smells
+</label>
+
+<label>
+<input type="radio" name="q28" value="None">
+I do not have concerns
+</label>
+
+</div>
+
+
+<!-- QUESTION 29 -->
+
+<div class="question">
+
+<h3>
+29. How does your skin react after using a body scrub?
+</h3>
+
+<label>
+<input type="radio" name="q29" value="Smooth">
+My skin feels smooth and refreshed
+</label>
+
+<label>
+<input type="radio" name="q29" value="Dry">
+Sometimes my skin feels dry afterward
+</label>
+
+<label>
+<input type="radio" name="q29" value="Irritated">
+My skin can become irritated easily
+</label>
+
+<label>
+<input type="radio" name="q29" value="Never Used">
+I have not used a body scrub before
+</label>
+
+</div>
+
+
+<!-- QUESTION 30 -->
+
+<div class="question">
+
+<h3>
+30. What type of body cream do you prefer?
+</h3>
+
+<label>
+<input type="radio" name="q30" value="Rich Cream">
+Rich and thick creams for deep moisture
+</label>
+
+<label>
+<input type="radio" name="q30" value="Light Lotion">
+Lightweight lotions that absorb quickly
+</label>
+
+<label>
+<input type="radio" name="q30" value="Calming">
+Creams with calming ingredients
+</label>
+
+<label>
+<input type="radio" name="q30" value="No Fragrance">
+Little to no fragrance
+</label>
+
+</div>
+
+
+<!-- QUESTION 31 -->
+
+<div class="question">
+
+<h3>
+31. What texture do you prefer in a body scrub?
+</h3>
+
+<label>
+<input type="radio" name="q31" value="Deep">
+Large exfoliating particles for a deep scrub
+</label>
+
+<label>
+<input type="radio" name="q31" value="Gentle">
+Small, gentle exfoliating particles
+</label>
+
+<label>
+<input type="radio" name="q31" value="Moisturizing">
+Creamy scrubs that moisturize
+</label>
+
+<label>
+<input type="radio" name="q31" value="None">
+No preference
+</label>
+
+</div>
+
+
+<!-- QUESTION 32 -->
+
+<div class="question">
+
+<h3>
+32. What type of body cream do you prefer?
+</h3>
+
+<label>
+<input type="radio" name="q32" value="Deep Moisture">
+Rich and thick creams
+</label>
+
+<label>
+<input type="radio" name="q32" value="Light">
+Lightweight lotions
+</label>
+
+<label>
+<input type="radio" name="q32" value="Sensitive">
+Calming ingredients
+</label>
+
+<label>
+<input type="radio" name="q32" value="Fragrance Free">
+Little to no fragrance
+</label>
+
+</div>
+
+
+<!-- QUESTION 33 -->
+
+<div class="question">
+
+<h3>
+33. When do you usually apply body cream?
+</h3>
+
+<label>
+<input type="radio" name="q33" value="After Shower">
+Every day after showering
+</label>
+
+<label>
+<input type="radio" name="q33" value="Dry Skin">
+When my skin feels dry
+</label>
+
+<label>
+<input type="radio" name="q33" value="Before Bed">
+Before bed as self-care
+</label>
+
+<label>
+<input type="radio" name="q33" value="Never">
+I do not regularly use body cream
+</label>
+
+</div>
+
+
+<!-- QUESTION 34 -->
+
+<div class="question">
+
+<h3>
+34. What is your main goal when using body cream?
+</h3>
+
+<label>
+<input type="radio" name="q34" value="Hydration">
+Keeping my skin soft and hydrated
+</label>
+
+<label>
+<input type="radio" name="q34" value="Repair">
+Repairing dry or cracked skin
+</label>
+
+<label>
+<input type="radio" name="q34" value="Texture">
+Improving skin texture
+</label>
+
+<label>
+<input type="radio" name="q34" value="Comfort">
+Maintaining sensitive skin comfort
+</label>
+
+</div>
+
+
+<!-- QUESTION 35 -->
+
+<div class="question">
+
+<h3>
+35. Which body cream ingredients interest you most?
+</h3>
+
+<label>
+<input type="radio" name="q35" value="Butters">
+Shea butter, cocoa butter, or oils
+</label>
+
+<label>
+<input type="radio" name="q35" value="Hydration">
+Hyaluronic acid or glycerin
+</label>
+
+<label>
+<input type="radio" name="q35" value="Aloe">
+Aloe vera or soothing ingredients
+</label>
+
+<label>
+<input type="radio" name="q35" value="Fragrance Free">
+Fragrance-free ingredients
+</label>
+
+</div>
+
+
+<button type="submit">
+Submit
+</button>
+
+
+</form>
+
+</div>
+
+
+<script src="quiz.js"></script>
+
+
 </body>
+
 </html>

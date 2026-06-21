@@ -2,63 +2,241 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Quiz Results</title>
+<title>Your Beauty Care Results</title>
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+
+<style>
+
+body {
+
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(to bottom,#ffe4ec,#ffd1e0);
+    color:#333;
+
+}
+
+
+
+.header {
+
+    text-align:center;
+    padding:25px;
+    background:#ffe9f1;
+
+}
+
+
+
+.header h1 {
+
+    font-family:'Great Vibes',cursive;
+    font-size:42px;
+    color:#c2185b;
+    margin:0;
+
+}
+
+
+
+.header img {
+
+    width:100%;
+    max-width:500px;
+    border-radius:15px;
+    margin-top:15px;
+
+}
+
+
+
+.container {
+
+    width:90%;
+    max-width:700px;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 6px 20px rgba(0,0,0,.1);
+
+}
+
+
+
+h2 {
+
+    text-align:center;
+    color:#8a2b55;
+
+}
+
+
+
+.result-box {
+
+    background:#fff0f5;
+    padding:25px;
+    border-radius:12px;
+    margin-top:25px;
+
+}
+
+
+
+h3 {
+
+    color:#c2185b;
+    margin-top:25px;
+
+}
+
+
+
+p {
+
+    line-height:1.7;
+
+}
+
+
+
+ul {
+
+    line-height:1.8;
+
+}
+
+
+
+button {
+
+    width:100%;
+    margin-top:30px;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#d81b60;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+
+}
+
+
+
+button:hover {
+
+    background:#b31550;
+
+}
+
+
+</style>
+
 </head>
+
+
 
 <body>
 
-<main>
 
-<h1>Your Skincare Profile</h1>
 
-<div class="result-card">
-    <h2>Your Skin Recommendation</h2>
-    <h3 id="result-title"></h3>
-    <p id="result-description"></p>
+<div class="header">
+
+<h1>
+Britani R's Beauty Care Results
+</h1>
+
+
+<img src="images/skin care routine.jpg"
+alt="Beauty Care Results">
+
 </div>
 
-<a href="quiz.html">← Retake Quiz</a>
 
-</main>
 
-<script>
-// Get saved answer
-let answer = localStorage.getItem("question1");
 
-let resultTitle = "";
-let resultDescription = "";
+<div class="container">
 
-if (answer === "hydrate") {
-    resultTitle = "Hydration Focused Skin";
-    resultDescription = "You need moisture-boosting ingredients.";
-}
-else if (answer === "glow") {
-    resultTitle = "Radiant Glow Skin";
-    resultDescription = "You will benefit from Vitamin C and Niacinamide.";
-}
-else if (answer === "clear") {
-    resultTitle = "Clear Skin Focus";
-    resultDescription = "We recommend salicylic acid and gentle cleansing.";
-}
-else if (answer === "smooth") {
-    resultTitle = "Smooth Skin Focus";
-    resultDescription = "Use gentle exfoliation and hydrating moisturizer.";
-}
-else {
-    resultTitle = "No Result Found";
-    resultDescription = "Please retake the quiz and select an answer.";
-}
 
-// Display results
-document.getElementById("result-title").textContent = resultTitle;
-document.getElementById("result-description").textContent = resultDescription;
+<h2>
+Your Personalized Beauty Routine
+</h2>
 
-</script>
+
+
+<div class="result-box">
+
+
+
+<h3 id="routineTitle">
+Loading your results...
+</h3>
+
+
+
+<p id="routineDescription">
+</p>
+
+
+
+
+<h3>
+Your Recommended Routine
+</h3>
+
+
+<ul id="routineSteps">
+
+</ul>
+
+
+
+
+
+<h3>
+Product Suggestions
+</h3>
+
+
+<ul id="products">
+
+</ul>
+
+
+
+</div>
+
+
+
+
+
+<button onclick="restartQuiz()">
+
+Retake Assessment
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<script src="results.js"></script>
+
 
 </body>
+
 </html>

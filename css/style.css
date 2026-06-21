@@ -1,26 +1,13 @@
 /* =========================
    GOOGLE FONT (CURSIVE + CLEAN)
 ========================= */
-@import url('https://fonts.googleapis.com/css2?family=Allura&family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap');
+
 
 /* =========================
    GLOBAL RESET
 ========================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-/* =========================
-   BODY
-========================= */
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #ffe6f0, #f8d7e3, #f3e7ff);
-    color: #333;
-    min-height: 100vh;
-}
 
 /* =========================
    HEADER
@@ -35,16 +22,86 @@ header {
 }
 
 header h1 {
-    font-family: 'Allura', cursive;
+    font-family: 'Dancing Script', cursive;
     font-size: 48px;
-    color: #ce7aa4;
+    color: #b9628e;
 }
 
-img {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* =========================
+   BODY
+========================= */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffe6f0, #f8d7e3, #f3e7ff);
+    color: #333;
+    min-height: 100vh;
+}
+
+/* =========================
+   CENTER QUIZ ON PAGE
+========================= */
+
+main {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center; /* horizontal center */
+    align-items: center;     /* vertical center */
+
+    padding: 40px 20px;
+}
+
+
+/* Image background container */
+.quiz-container {
+    position: top;
+
     width: 100%;
-    max-width: 850px;
+    max-width: 700px;
+
+    min-height: 700px;
+
+    background-image: url("images/skin-care-routine.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border-radius: 15px;
+    overflow: hidden;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,.15);
+}
+
+
+/* Questions on top of image */
+.quiz-content {
+    position: relative;
+    z-index: 2;
+
+    padding: 40px;
+
+    background: rgba(211, 144, 194, 0.65);
+
+    min-height: 700px;
+}
+
+/* Cursive Quiz Title */
+
+.quiz-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 48px;
+    color: #cc3681;
+}
+
+/* Center button */
+button {
     display: block;
-    margin: 0 auto;
+    margin: 20px auto 0;
 }
 
 /* =========================
@@ -53,6 +110,7 @@ img {
 main {
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 40px 20px;
 }
 
@@ -66,7 +124,308 @@ section {
 ========================= */
 section h2 {
     text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 48px;
     margin-bottom: 25px;
-    font-size: 28px;
-    color: #ce7aa4;
+    color: #8b4d6c;
+}
+
+/* =========================
+   RESULTS PAGE
+========================= */
+
+.results-container {
+
+    max-width: 750px;
+
+    margin: 40px auto;
+
+    padding: 30px;
+
+}
+
+
+.results-container h2 {
+
+    text-align:center;
+
+    color:#b9628e;
+
+    margin-bottom:20px;
+
+}
+
+
+.result-card {
+
+    background:rgba(255,255,255,0.85);
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    border-radius:15px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+
+}
+
+
+.result-card h3 {
+
+    color:#ce7aa4;
+
+    margin-bottom:15px;
+
+}
+
+
+.button-link {
+
+    display:block;
+
+    text-align:center;
+
+    background:#d81b60;
+
+    color:white;
+
+    padding:12px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+}
+
+
+.button-link:hover {
+
+    background:#b31550;
+
+}
+
+/* =========================
+   RECOMMENDATIONS PAGE
+========================= */
+
+.recommendations {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* Main Heading */
+
+.recommendations h2 {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 60px;
+    font-weight: 700;
+    color: #c75b8c;
+    margin-bottom: 20px;
+}
+
+/* Intro Paragraph */
+
+.recommendations p {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 35px;
+    line-height: 1.8;
+}
+
+/* =========================
+   ROUTINE CARDS
+========================= */
+
+.routine-card {
+       background: rgb(238, 109, 195);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 6px 15px rgba(185, 98, 142, 0.15);
+}
+
+.routine-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Card Titles */
+
+.routine-card h3 {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 42px;
+    font-weight: 700;
+    color: #d81b60;
+    margin-bottom: 20px;
+}
+
+/* Lists */
+
+.routine-card ul,
+.routine-card ol {
+    padding-left: 25px;
+}
+
+.routine-card li {
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    line-height: 1.9;
+    color: #444;
+    margin-bottom: 12px;
+}
+
+.routine-card strong {
+    color: #b31550;
+    font-weight: 600;
+}
+
+/* =========================
+   SPECIAL CARD STYLES
+========================= */
+
+/* Skincare */
+
+.routine-card:nth-of-type(1),
+.routine-card:nth-of-type(2),
+.routine-card:nth-of-type(3) {
+    border-left: 6px solid #ff80ab;
+}
+
+/* Body Cream */
+
+.routine-card:nth-of-type(4),
+.routine-card:nth-of-type(5),
+.routine-card:nth-of-type(6) {
+    border-left: 6px solid #f8c8dc;
+}
+
+/* Body Scrubs */
+
+.routine-card:nth-of-type(7),
+.routine-card:nth-of-type(8),
+.routine-card:nth-of-type(9) {
+    border-left: 6px solid #ffd180;
+}
+
+/* Scents */
+
+.routine-card:nth-of-type(10),
+.routine-card:nth-of-type(11),
+.routine-card:nth-of-type(12),
+.routine-card:nth-of-type(13),
+.routine-card:nth-of-type(14) {
+    border-left: 6px solid #c5a3ff;
+}
+
+/* =========================
+   PAGE BACKGROUND
+========================= */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(
+        135deg,
+        #ffe6f0,
+        #f8d7e3,
+        #f3e7ff
+    );
+    color: #333;
+    min-height: 100vh;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    text-align: center;
+    padding: 30px 15px;
+    background: rgba(255,255,255,0.4);
+    backdrop-filter: blur(10px);
+}
+
+header h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 64px;
+    font-weight: 700;
+    color: #b9628e;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    background: #f8c8dc;
+    color: #8a2b55;
+    padding: 10px 18px;
+    border-radius: 25px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    background: #d81b60;
+    color: white;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    background: #cf6f97;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    header h1 {
+        font-size: 42px;
+    }
+
+    .recommendations h2 {
+        font-size: 42px;
+    }
+
+    .routine-card h3 {
+        font-size: 32px;
+    }
+
+    .routine-card {
+        padding: 20px;
+    }
+
+    .routine-card li {
+        font-size: 16px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
 }
