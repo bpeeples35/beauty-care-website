@@ -13,111 +13,82 @@
 <style>
 
 body{
-
 margin:0;
 font-family:Poppins,sans-serif;
 background:#fff3f7;
-
 }
 
 header{
-
 background:#ffdbe8;
 padding:30px;
 text-align:center;
-
 }
 
 header h1{
-
 font-family:'Great Vibes';
 font-size:48px;
 color:#c2185b;
-
 }
 
 .container{
-
 max-width:900px;
 margin:auto;
 padding:30px;
-
 }
 
 .card{
-
 background:white;
 margin-bottom:25px;
 padding:25px;
 border-radius:15px;
 box-shadow:0 5px 18px rgba(0,0,0,.08);
-
 }
 
 .card h2{
-
 color:#c2185b;
-margin-top:0;
-
 }
 
 ul{
-
 padding-left:20px;
+}
 
+span{
+font-weight:bold;
+color:#8a2b55;
 }
 
 .progress{
-
 height:25px;
 background:#eee;
 border-radius:20px;
 overflow:hidden;
-
 }
 
 .progress-bar{
-
 height:100%;
 width:0%;
 background:#d81b60;
 color:white;
 text-align:center;
 line-height:25px;
-transition:.8s;
-
 }
 
 button{
-
 padding:12px 25px;
 background:#d81b60;
 color:white;
 border:none;
 border-radius:8px;
-font-size:16px;
 cursor:pointer;
-
-}
-
-button:hover{
-
-background:#b31550;
-
-}
-
-span{
-
-font-weight:bold;
-color:#8a2b55;
-
 }
 
 </style>
 
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -127,11 +98,16 @@ color:#8a2b55;
 
 </header>
 
+
+
 <div class="container">
+
 
 <div class="card">
 
 <h2>🌸 Skin Profile</h2>
+
+<p><strong>Profile:</strong> <span id="skinProfile"></span></p>
 
 <p><strong>Age:</strong> <span id="age"></span></p>
 
@@ -139,21 +115,25 @@ color:#8a2b55;
 
 <p><strong>Routine:</strong> <span id="routine"></span></p>
 
-<p><strong>Skin Texture:</strong> <span id="texture"></span></p>
+<p><strong>Texture:</strong> <span id="texture"></span></p>
 
-<p><strong>Sensitivity:</strong> <span id="sensitive"></span></p>
+<p><strong>Sensitivity:</strong> <span id="sensitivity"></span></p>
 
 <p><strong>Breakouts:</strong> <span id="breakouts"></span></p>
 
 </div>
 
+
+
 <div class="card">
 
-<h2>✨ Your Skin Concerns</h2>
+<h2>✨ Skin Concerns</h2>
 
 <ul id="concerns"></ul>
 
 </div>
+
+
 
 <div class="card">
 
@@ -163,6 +143,8 @@ color:#8a2b55;
 
 </div>
 
+
+
 <div class="card">
 
 <h2>🌙 Night Routine</h2>
@@ -171,37 +153,47 @@ color:#8a2b55;
 
 </div>
 
+
+
 <div class="card">
 
-<h2>💧 Recommended Ingredients</h2>
+<h2>💧 Ingredients</h2>
 
 <ul id="ingredients"></ul>
 
 </div>
 
+
+
 <div class="card">
 
-<h2>🚫 Ingredients To Avoid</h2>
+<h2>🚫 Ingredients To Limit</h2>
 
 <ul id="avoid"></ul>
 
 </div>
 
+
+
 <div class="card">
 
-<h2>🧴 Product Suggestions</h2>
+<h2>🧴 Products</h2>
 
 <ul id="products"></ul>
 
 </div>
 
+
+
 <div class="card">
 
-<h2>🛁 Body Care Recommendations</h2>
+<h2>🛁 Body Care</h2>
 
 <ul id="bodycare"></ul>
 
 </div>
+
+
 
 <div class="card">
 
@@ -211,13 +203,17 @@ color:#8a2b55;
 
 </div>
 
+
+
 <div class="card">
 
-<h2>Your Beauty Match Score</h2>
+<h2>Beauty Match Score</h2>
 
 <div class="progress">
 
-<div class="progress-bar" id="scoreBar">0%</div>
+<div class="progress-bar" id="scoreBar">
+0%
+</div>
 
 </div>
 
@@ -225,9 +221,10 @@ color:#8a2b55;
 
 </div>
 
+
 <center>
 
-<button onclick="window.location='quiz.html'">
+<button onclick="location.href='quiz.html'">
 
 Take Quiz Again
 
@@ -235,133 +232,14 @@ Take Quiz Again
 
 </center>
 
+
 </div>
 
-<script>
 
-const data = JSON.parse(localStorage.getItem("beautyQuiz"));
 
-document.getElementById("age").textContent=data.q1;
-document.getElementById("goal").textContent=data.q2;
-document.getElementById("routine").textContent=data.q16;
-document.getElementById("texture").textContent=data.q6;
-document.getElementById("sensitive").textContent=data.q9;
-document.getElementById("breakouts").textContent=data.q8;
+<script src="results.js"></script>
 
-data.concerns.forEach(item=>{
-
-let li=document.createElement("li");
-li.textContent=item;
-document.getElementById("concerns").appendChild(li);
-
-});
-
-function add(list,id){
-
-list.forEach(text=>{
-
-let li=document.createElement("li");
-li.textContent=text;
-document.getElementById(id).appendChild(li);
-
-});
-
-}
-
-add([
-"Gentle Cleanser",
-"Vitamin C Serum",
-"Moisturizer",
-"SPF 30+ Sunscreen"
-],"morningRoutine");
-
-add([
-"Cleanser",
-"Treatment Serum",
-"Night Moisturizer"
-],"nightRoutine");
-
-let ingredients=[];
-
-if(data.q2=="Hydration"){
-
-ingredients=[
-"Hyaluronic Acid",
-"Ceramides",
-"Glycerin"
-];
-
-}
-
-if(data.q2=="Anti Aging"){
-
-ingredients=[
-"Retinol",
-"Peptides",
-"Vitamin C"
-];
-
-}
-
-if(data.q2=="Acne"){
-
-ingredients=[
-"Salicylic Acid",
-"Niacinamide",
-"Zinc"
-];
-
-}
-
-if(data.q2=="Brightening"){
-
-ingredients=[
-"Vitamin C",
-"Alpha Arbutin",
-"Niacinamide"
-];
-
-}
-
-add(ingredients,"ingredients");
-
-add([
-"Harsh Alcohols",
-"Over Exfoliating",
-"Heavy Fragrance (if sensitive)"
-],"avoid");
-
-add([
-"Gentle Cleanser",
-"Hydrating Serum",
-"Ceramide Moisturizer",
-"Broad Spectrum Sunscreen"
-],"products");
-
-add([
-"Weekly Body Scrub",
-"Daily Body Cream",
-"Moisturizing Body Wash"
-],"bodycare");
-
-add([
-"Drink 8 glasses of water",
-"Sleep 7-9 hours",
-"Wash makeup brushes weekly",
-"Never skip sunscreen"
-],"tips");
-
-let score=90;
-
-if(data.q10=="High Water") score+=5;
-if(data.q9=="Very Sensitive") score-=5;
-
-document.getElementById("scoreBar").style.width=score+"%";
-document.getElementById("scoreBar").innerHTML=score+"%";
-
-document.getElementById("scoreText").innerHTML="Your skincare routine is a <strong>"+score+"%</strong> match for your goals!";
-
-</script>
 
 </body>
+
 </html>
