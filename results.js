@@ -1,1831 +1,1154 @@
-// =======================================
-// BEAUTY CARE ASSESSMENT RESULTS.JS
-// PART 1/3
-// =======================================
+document.addEventListener("DOMContentLoaded", function () {
 
+    const results = JSON.parse(
+        localStorage.getItem("beautyQuizResults")
+    );
 
-// Get saved quiz answers
 
-const answers = {};
+    if (!results) {
 
-for (let i = 1; i <= 35; i++) {
+        alert("No quiz results found.");
+        window.location.href = "quiz.html";
+        return;
 
-    answers[`q${i}`] = localStorage.getItem(`q${i}`);
+    }
 
-}
 
+    function get(id){
 
+        const element = document.getElementById(id);
 
-// Get checkbox answers from Question 3
+        return element ? element : null;
 
-const concerns = JSON.parse(localStorage.getItem("concerns")) || [];
+    }
 
 
+    function setText(id,text){
 
+        const element = get(id);
 
-// =======================================
-// RESULT VARIABLES
-// =======================================
+        if(element){
 
-let routineTitle = "";
+            element.textContent = text;
 
-let routineDescription = "";
+        }
 
-let routineSteps = [];
+    }
 
-let products = [];
 
-let fragranceRecommendation = "";
+    function addList(id,items){
 
-let bodyRecommendation = "";
+        const element = get(id);
 
+        if(!element) return;
 
 
+        element.innerHTML="";
 
-// =======================================
-// SCORING SYSTEM
-// =======================================
 
-let scores = {
+        items.forEach(function(item){
 
-    hydration: 0,
+            let li=document.createElement("li");
 
-    acne: 0,
+            li.textContent=item;
 
-    sensitive: 0,
+            element.appendChild(li);
 
-    antiAging: 0,
-
-    brightening: 0,
-
-    minimalist: 0,
-
-
-    // fragrance scores
-
-    scented: 0,
-
-    lightScent: 0,
-
-    fragranceFree: 0,
-
-
-    // body care scores
-
-    bodyHydration: 0,
-
-    bodyScrub: 0
-
-};
-
-
-
-
-
-// =======================================
-// QUESTION 2
-// SKINCARE GOAL
-// =======================================
-
-if (answers.q2 === "Hydration") {
-
-    scores.hydration += 5;
-
-}
-
-
-if (answers.q2 === "Acne") {
-
-    scores.acne += 5;
-
-}
-
-
-if (answers.q2 === "Anti Aging") {
-
-    scores.antiAging += 5;
-
-}
-
-
-if (answers.q2 === "Brightening") {
-
-    scores.brightening += 5;
-
-}
-
-
-if (answers.q2 === "Healthy Skin") {
-
-    scores.minimalist += 3;
-
-}
-
-
-
-
-
-// =======================================
-// QUESTION 3
-// SKIN CONCERNS CHECKBOXES
-// =======================================
-
-concerns.forEach(concern => {
-
-
-
-    if (concern === "Acne") {
-
-        scores.acne += 3;
+        });
 
     }
 
 
 
-    if (concern === "Dark Spots") {
+    let concerns = results.concerns || [];
 
-        scores.brightening += 3;
+
+    /*
+    ==========================
+    BEAUTY PROFILE
+    ==========================
+    */
+
+
+    let skinProfile="Balanced Skin";
+
+
+
+    if(results.q2==="Hydration" ||
+       results.q6==="Dry"){
+
+        skinProfile="Hydration-Focused Skin";
+
+    }
+
+
+    if(results.q2==="Acne" ||
+       results.q8==="Frequently"){
+
+        skinProfile="Clarifying Acne-Prone Skin";
+
+    }
+
+
+    if(results.q9==="Very Sensitive" ||
+       concerns.includes("Sensitive")){
+
+        skinProfile="Sensitive Skin";
+
+    }
+
+
+    if(results.q2==="Anti Aging" ||
+       concerns.includes("Wrinkles") ||
+       concerns.includes("Firmness")){
+
+        skinProfile="Age Support Skin";
+
+    }
+
+
+    if(results.q2==="Brightening" ||
+       concerns.includes("Dark Spots") ||
+       concerns.includes("Dull Skin")){
+
+        skinProfile="Brightening Skin";
 
     }
 
 
 
-    if (concern === "Dull Skin") {
+    setText(
+        "skinProfile",
+        skinProfile
+    );
 
-        scores.brightening += 2;
+
+    setText(
+        "age",
+        results.q1
+    );
+
+
+    setText(
+        "goal",
+        results.q2
+    );
+
+
+    setText(
+        "texture",
+        results.q6
+    );
+
+
+    setText(
+        "sensitivity",
+        results.q9
+    );
+
+
+    setText(
+        "climate",
+        results.q13
+    );
+
+
+    setText(
+        "budget",
+        results.q14
+    );
+
+
+    /*
+    ==========================
+    SKIN CONCERNS
+    ==========================
+    */
+
+
+    addList(
+        "concerns",
+        concerns.length ?
+        concerns :
+        ["No major concerns selected"]
+    );
+
+
+    /*
+    ==========================
+    MORNING ROUTINE
+    ==========================
+    */
+
+
+    let morning=[
+
+        "Gentle cleanser",
+
+        "Treatment serum",
+
+        "Moisturizer",
+
+        "Broad spectrum SPF 30+ sunscreen"
+
+    ];
+
+
+
+    if(results.q2==="Acne"){
+
+        morning=[
+
+            "Oil-control cleanser",
+
+            "Niacinamide serum",
+
+            "Light moisturizer",
+
+            "Non-comedogenic sunscreen"
+
+        ];
 
     }
 
 
 
-    if (concern === "Wrinkles") {
+    if(results.q2==="Hydration"){
 
-        scores.antiAging += 3;
+        morning=[
 
-    }
+            "Hydrating cleanser",
 
+            "Hyaluronic acid serum",
 
+            "Ceramide moisturizer",
 
-    if (concern === "Texture") {
+            "Hydrating sunscreen"
 
-        scores.brightening += 2;
-
-    }
-
-
-
-    if (concern === "Under Eye") {
-
-        scores.antiAging += 2;
+        ];
 
     }
 
 
 
-    if (concern === "Sensitive") {
+    if(results.q2==="Brightening"){
 
-        scores.sensitive += 5;
+        morning=[
+
+            "Gentle cleanser",
+
+            "Vitamin C serum",
+
+            "Brightening moisturizer",
+
+            "SPF 50 sunscreen"
+
+        ];
+
+    }
+
+
+
+    if(results.q9==="Very Sensitive"){
+
+        morning=[
+
+            "Fragrance-free cleanser",
+
+            "Soothing serum",
+
+            "Barrier repair moisturizer",
+
+            "Mineral sunscreen"
+
+        ];
 
     }
 
 
 
-    if (concern === "Firmness") {
+    addList(
+        "morningRoutine",
+        morning
+    );
 
-        scores.antiAging += 3;
+
+
+
+    /*
+    ==========================
+    NIGHT ROUTINE
+    ==========================
+    */
+
+
+    let night=[
+
+        "Remove makeup and sunscreen",
+
+        "Gentle cleanser",
+
+        "Treatment serum",
+
+        "Night moisturizer"
+
+    ];
+
+
+
+    if(results.q16==="Advanced"){
+
+        night.push(
+            "Weekly treatment mask"
+        );
+
+    }
+
+
+    if(results.q2==="Anti Aging"){
+
+        night.push(
+            "Retinol treatment 2-3 nights weekly"
+        );
+
+    }
+
+
+    if(results.q2==="Acne"){
+
+        night.push(
+            "Salicylic acid treatment"
+        );
+
+    }
+
+
+    addList(
+        "nightRoutine",
+        night
+    );
+
+    /*
+    ==========================
+    INGREDIENT RECOMMENDATIONS
+    ==========================
+    */
+
+
+    let ingredients = [];
+
+
+    if(results.q2 === "Hydration"){
+
+        ingredients.push(
+            "Hyaluronic Acid",
+            "Ceramides",
+            "Glycerin",
+            "Squalane"
+        );
+
+    }
+
+
+    if(results.q2 === "Acne"){
+
+        ingredients.push(
+            "Salicylic Acid",
+            "Niacinamide",
+            "Benzoyl Peroxide",
+            "Zinc"
+        );
+
+    }
+
+
+    if(results.q2 === "Anti Aging"){
+
+        ingredients.push(
+            "Retinol",
+            "Peptides",
+            "Vitamin C",
+            "Collagen-supporting ingredients"
+        );
+
+    }
+
+
+    if(results.q2 === "Brightening"){
+
+        ingredients.push(
+            "Vitamin C",
+            "Niacinamide",
+            "Alpha Arbutin",
+            "Licorice Root"
+        );
+
+    }
+
+
+    if(results.q2 === "Healthy Skin"){
+
+        ingredients.push(
+            "Ceramides",
+            "Antioxidants",
+            "Niacinamide",
+            "Panthenol"
+        );
 
     }
 
 
 
-    if (concern === "Pores") {
+    if(results.q6 === "Dry"){
 
-        scores.acne += 2;
+        ingredients.push(
+            "Shea Butter",
+            "Oils",
+            "Barrier repairing ingredients"
+        );
 
     }
+
+
+    if(results.q6 === "Rough" ||
+       results.q6 === "Uneven"){
+
+        ingredients.push(
+            "Lactic Acid",
+            "Glycolic Acid",
+            "Gentle exfoliating ingredients"
+        );
+
+    }
+
+
+
+    if(results.q9 === "Very Sensitive"){
+
+        ingredients.push(
+            "Aloe Vera",
+            "Centella Asiatica",
+            "Oat Extract"
+        );
+
+    }
+
+
+
+    ingredients = [...new Set(ingredients)];
+
+
+
+    addList(
+        "ingredients",
+        ingredients
+    );
+
+
+
+
+
+    /*
+    ==========================
+    INGREDIENTS TO LIMIT
+    ==========================
+    */
+
+
+    let avoid=[];
+
+
+
+    if(results.q9==="Very Sensitive" ||
+       results.q19==="Sensitive" ||
+       results.q22==="Sensitive Skin"){
+
+        avoid.push(
+
+            "Strong fragrance",
+            "Harsh exfoliants",
+            "Drying alcohols"
+
+        );
+
+    }
+
+
+    if(results.q5==="AHA BHA" ||
+       results.q12==="Several Times"){
+
+        avoid.push(
+
+            "Over exfoliating",
+            "Using too many active ingredients together"
+
+        );
+
+    }
+
+
+    if(results.q8==="Frequently"){
+
+        avoid.push(
+
+            "Heavy pore-clogging products"
+
+        );
+
+    }
+
+
+
+    if(avoid.length===0){
+
+        avoid.push(
+
+            "Products that do not match your skin needs",
+            "Skipping sunscreen"
+
+        );
+
+    }
+
+
+
+    addList(
+        "avoid",
+        avoid
+    );
+
+
+    /*
+    ==========================
+    EXFOLIATION PLAN
+    ==========================
+    */
+
+
+    let exfoliation="";
+
+
+    if(results.q5==="Weekly"){
+
+        exfoliation =
+        "Use a gentle exfoliant once weekly.";
+
+    }
+
+
+    if(results.q5==="Hydrating"){
+
+        exfoliation =
+        "Focus on gentle hydration and exfoliate 1-2 times weekly.";
+
+    }
+
+
+    if(results.q5==="BHA"){
+
+        exfoliation =
+        "BHA exfoliation may help with pores and breakouts 2-3 times weekly.";
+
+    }
+
+
+    if(results.q5==="AHA BHA"){
+
+        exfoliation =
+        "Alternate AHAs and BHAs carefully to avoid irritation.";
+
+    }
+
+
+
+    setText(
+        "exfoliation",
+        exfoliation
+    );
+
+    /*
+    ==========================
+    FRAGRANCE PROFILE
+    ==========================
+    */
+
+
+    let fragrance="";
+
+
+    if(results.q18==="Scented"){
+
+        fragrance =
+        "You enjoy scented skincare. Floral, fruity, and relaxing scents may fit your preferences.";
+
+    }
+
+
+    if(results.q18==="Light Scent"){
+
+        fragrance =
+        "Light natural scents are recommended.";
+
+    }
+
+
+    if(results.q18==="Fragrance Free"){
+
+        fragrance =
+        "Fragrance-free skincare is the best match for your preferences.";
+
+    }
+
+
+
+    if(results.q19==="Sensitive" ||
+       results.q19==="Only Fragrance Free"){
+
+        fragrance =
+        "Your skin may benefit from fragrance-free products.";
+
+    }
+
+
+
+    setText(
+        "fragrance",
+        fragrance
+    );
+
+    /*
+    ==========================
+    PRODUCT RECOMMENDATIONS
+    ==========================
+    */
+
+
+    let products=[];
+
+
+
+    if(results.q14==="Under25"){
+
+        products.push(
+
+            "Affordable gentle cleanser",
+            "Drugstore moisturizer",
+            "Budget-friendly SPF"
+
+        );
+
+    }
+
+
+
+    if(results.q14==="25-50"){
+
+        products.push(
+
+            "Quality cleanser",
+            "Targeted treatment serum",
+            "Daily moisturizer",
+            "SPF protection"
+
+        );
+
+    }
+
+
+
+    if(results.q14==="50-100" ||
+       results.q14==="100+"){
+
+        products.push(
+
+            "Advanced treatment serum",
+            "Premium moisturizer",
+            "Specialized skincare treatments"
+
+        );
+
+    }
+
+
+
+    if(results.q11==="Often"){
+
+        products.push(
+
+            "Makeup remover",
+            "Double cleansing routine"
+
+        );
+
+    }
+
+
+
+    if(results.q15==="Bodycare"){
+
+        products.push(
+
+            "Body exfoliating scrub",
+            "Hydrating body cream"
+
+        );
+
+    }
+
+
+
+    addList(
+        "products",
+        products
+    );
+
+
+    /*
+    ==========================
+    CLIMATE ADVICE
+    ==========================
+    */
+
+
+    let climateAdvice=[];
+
+
+
+    if(results.q13==="Hot Humid"){
+
+        climateAdvice=[
+
+            "Choose lightweight moisturizers",
+            "Use non-greasy sunscreen",
+            "Look for oil-control ingredients"
+
+        ];
+
+    }
+
+
+
+    if(results.q13==="Hot Dry"){
+
+        climateAdvice=[
+
+            "Use richer moisturizers",
+            "Add hydration layers",
+            "Protect skin barrier"
+
+        ];
+
+    }
+
+
+
+    if(results.q13==="Cold"){
+
+        climateAdvice=[
+
+            "Use thick barrier creams",
+            "Avoid over cleansing",
+            "Protect dry areas"
+
+        ];
+
+    }
+
+
+
+    if(results.q13==="Moderate"){
+
+        climateAdvice=[
+
+            "Maintain balanced hydration",
+            "Continue daily SPF"
+
+        ];
+
+    }
+
+
+
+    addList(
+        "climate",
+        climateAdvice
+    );
+
+    /*
+    ==========================
+    BODY CARE RECOMMENDATIONS
+    ==========================
+    */
+
+
+    let bodyCare = [];
+
+
+    if(results.q25 === "2-3 Weekly"){
+
+        bodyCare.push(
+            "Use a body scrub 2-3 times weekly",
+            "Follow exfoliation with body cream"
+        );
+
+    }
+
+
+    if(results.q25 === "Weekly"){
+
+        bodyCare.push(
+            "Use a gentle body scrub once weekly",
+            "Apply moisturizer after showering"
+        );
+
+    }
+
+
+    if(results.q25 === "Occasionally"){
+
+        bodyCare.push(
+            "Exfoliate when skin feels rough",
+            "Focus on elbows, knees, and heels"
+        );
+
+    }
+
+
+    if(results.q25 === "Never"){
+
+        bodyCare.push(
+            "Start with a gentle body exfoliation once weekly",
+            "Avoid harsh scrubbing"
+        );
+
+    }
+
+
+
+
+    if(results.q26 === "Soft Skin"){
+
+        bodyCare.push(
+            "Sugar scrub",
+            "Moisturizing body butter"
+        );
+
+    }
+
+
+    if(results.q26 === "Dry Skin"){
+
+        bodyCare.push(
+            "Hydrating body scrub",
+            "Rich cream with shea butter or oils"
+        );
+
+    }
+
+
+    if(results.q26 === "Rough Areas"){
+
+        bodyCare.push(
+            "Deep exfoliating scrub",
+            "Extra moisturizer for elbows and heels"
+        );
+
+    }
+
+
+    if(results.q26 === "Texture"){
+
+        bodyCare.push(
+            "Gentle chemical exfoliation",
+            "Smoothing body lotion"
+        );
+
+    }
+
+
+
+    if(results.q30 === "Rich Cream" ||
+       results.q32 === "Deep Moisture"){
+
+        bodyCare.push(
+            "Thick body cream for overnight moisture"
+        );
+
+    }
+
+
+
+    if(results.q30 === "Light Lotion" ||
+       results.q32 === "Light"){
+
+        bodyCare.push(
+            "Lightweight lotion for daily use"
+        );
+
+    }
+
+
+
+    if(results.q30 === "Calming" ||
+       results.q32 === "Sensitive"){
+
+        bodyCare.push(
+            "Soothing body cream with calming ingredients"
+        );
+
+    }
+
+
+
+    if(results.q30 === "No Fragrance" ||
+       results.q32 === "Fragrance Free"){
+
+        bodyCare.push(
+            "Fragrance-free body moisturizer"
+        );
+
+    }
+
+
+
+    if(results.q35 === "Butters"){
+
+        bodyCare.push(
+            "Shea butter and cocoa butter formulas"
+        );
+
+    }
+
+
+    if(results.q35 === "Hydration"){
+
+        bodyCare.push(
+            "Hyaluronic acid and glycerin formulas"
+        );
+
+    }
+
+
+    if(results.q35 === "Aloe"){
+
+        bodyCare.push(
+            "Aloe vera soothing formulas"
+        );
+
+    }
+
+
+
+    if(results.q35 === "Fragrance Free"){
+
+        bodyCare.push(
+            "Simple fragrance-free ingredients"
+        );
+
+    }
+
+
+
+    bodyCare = [...new Set(bodyCare)];
+
+
+
+    addList(
+        "bodycare",
+        bodyCare
+    );
+
+
+    /*
+    ==========================
+    LIFESTYLE TIPS
+    ==========================
+    */
+
+
+    let tips=[
+
+        "Wear sunscreen every day",
+
+        "Keep your skin hydrated",
+
+        "Clean makeup brushes regularly",
+
+        "Avoid picking at breakouts"
+
+    ];
+
+
+
+    if(results.q10==="Low Water"){
+
+        tips.push(
+            "Increase daily water intake"
+        );
+
+    }
+
+
+    if(results.q11==="Often"){
+
+        tips.push(
+            "Always remove makeup before sleeping"
+        );
+
+    }
+
+
+    if(results.q7==="Minimal"){
+
+        tips.push(
+            "Choose a simple routine you can maintain consistently"
+        );
+
+    }
+
+
+    if(results.q7==="Advanced"){
+
+        tips.push(
+            "Introduce new treatments slowly"
+        );
+
+    }
+
+
+
+    addList(
+        "tips",
+        tips
+    );
+
+
+
+
+
+
+
+    /*
+    ==========================
+    BEAUTY SCORE
+    ==========================
+    */
+
+
+    let score = 75;
+
+
+
+    if(results.q2){
+
+        score += 5;
+
+    }
+
+
+    if(concerns.length >= 3){
+
+        score += 5;
+
+    }
+
+
+    if(results.q10==="High Water"){
+
+        score += 5;
+
+    }
+
+
+    if(results.q16==="Balanced" ||
+       results.q16==="Advanced"){
+
+        score += 5;
+
+    }
+
+
+    if(results.q17){
+
+        score += 3;
+
+    }
+
+
+    if(results.q9==="Very Sensitive"){
+
+        score -= 3;
+
+    }
+
+
+
+    if(score > 100){
+
+        score = 100;
+
+    }
+
+
+    if(score < 0){
+
+        score = 0;
+
+    }
+
+
+
+
+    let scoreBar = document.getElementById(
+        "scoreBar"
+    );
+
+
+    if(scoreBar){
+
+        scoreBar.style.width =
+            score + "%";
+
+        scoreBar.textContent =
+            score + "%";
+
+    }
+
+
+
+    setText(
+        "scoreText",
+        "Your personalized beauty match is " +
+        score +
+        "%. Keep building healthy skincare habits!"
+    );
+
+
+
+
+
+
+    /*
+    ==========================
+    FINAL MESSAGE
+    ==========================
+    */
+
+
+    let message =
+        "Your assessment shows a " +
+        skinProfile +
+        " profile. Your routine should focus on " +
+        results.q2 +
+        " while supporting your personal preferences.";
+
+
+
+    setText(
+        "finalMessage",
+        message
+    );
 
 
 
 });
-
-
-
-
-
-
-
-// =======================================
-// QUESTION 4
-// PORES
-// =======================================
-
-
-if (answers.q4 === "Large") {
-
-    scores.acne += 2;
-
-}
-
-
-if (answers.q4 === "Very Large") {
-
-    scores.acne += 3;
-
-}
-
-
-
-
-
-// =======================================
-// QUESTION 5
-// EXFOLIATION
-// =======================================
-
-
-if (answers.q5 === "BHA") {
-
-    scores.acne += 2;
-
-}
-
-
-if (answers.q5 === "AHA BHA") {
-
-    scores.brightening += 2;
-
-}
-
-
-if (answers.q5 === "Hydrating") {
-
-    scores.hydration += 2;
-
-}
-
-
-
-
-
-// =======================================
-// QUESTION 6
-// SKIN TEXTURE
-// =======================================
-
-
-if (answers.q6 === "Smooth") {
-
-    scores.minimalist += 2;
-
-}
-
-
-
-if (answers.q6 === "Dry") {
-
-    scores.hydration += 3;
-
-}
-
-
-
-if (answers.q6 === "Rough") {
-
-    scores.brightening += 2;
-
-}
-
-
-
-if (answers.q6 === "Uneven") {
-
-    scores.brightening += 3;
-
-}
-
-
-
-
-
-
-
-// =======================================
-// QUESTION 7
-// TIME AVAILABLE
-// =======================================
-
-
-if (answers.q7 === "Minimal") {
-
-    scores.minimalist += 3;
-
-}
-
-
-if (answers.q7 === "Advanced") {
-
-    scores.antiAging += 2;
-
-}
-
-
-
-
-
-
-
-// =======================================
-// QUESTION 8
-// BREAKOUTS
-// =======================================
-
-
-if (answers.q8 === "Frequently") {
-
-    scores.acne += 5;
-
-}
-
-
-if (answers.q8 === "Sometimes") {
-
-    scores.acne += 3;
-
-}
-
-
-if (answers.q8 === "Rarely") {
-
-    scores.acne += 1;
-
-}
-
-
-
-
-
-
-
-// =======================================
-// QUESTION 9
-// SENSITIVITY
-// =======================================
-
-
-if (answers.q9 === "Very Sensitive") {
-
-    scores.sensitive += 6;
-
-}
-
-
-if (answers.q9 === "Slightly Sensitive") {
-
-    scores.sensitive += 3;
-
-}
-
-
-if (answers.q9 === "Not Sensitive") {
-
-    scores.sensitive += 1;
-
-}
-
-
-
-
-
-
-
-// =======================================
-// QUESTION 10
-// WATER INTAKE
-// =======================================
-
-
-if (answers.q10 === "Low Water") {
-
-    scores.hydration += 2;
-
-}
-
-
-if (answers.q10 === "High Water") {
-
-    scores.hydration += 1;
-
-}
-
-
-
-
-
-
-
-// =======================================
-// QUESTION 11
-// MAKEUP USE
-// =======================================
-
-
-if (answers.q11 === "Often") {
-
-    scores.acne += 2;
-
-}
-
-
-if (answers.q11 === "Never") {
-
-    scores.minimalist += 1;
-
-}
-
-
-
-
-
-
-
-// =======================================
-// QUESTION 12
-// EXFOLIATION HABITS
-// =======================================
-
-
-if (answers.q12 === "Never") {
-
-    scores.hydration += 2;
-
-}
-
-
-if (answers.q12 === "Weekly") {
-
-    scores.brightening += 2;
-
-}
-
-
-if (answers.q12 === "Several Times") {
-
-    scores.antiAging += 2;
-
-}
-
-
-
-
-
-
-
-// =======================================
-// QUESTION 13
-// CLIMATE
-// =======================================
-
-
-if (answers.q13 === "Hot Humid") {
-
-    scores.acne += 2;
-
-}
-
-
-if (answers.q13 === "Hot Dry") {
-
-    scores.hydration += 2;
-
-}
-
-
-if (answers.q13 === "Cold") {
-
-    scores.hydration += 2;
-
-}
-
-
-if (answers.q13 === "Moderate") {
-
-    scores.minimalist += 1;
-
-}
-
-
-
-
-
-
-
-// =======================================
-// QUESTION 14
-// BUDGET
-// =======================================
-
-
-if (answers.q14 === "100+") {
-
-    scores.antiAging += 2;
-
-}
-
-
-if (answers.q14 === "Under25") {
-
-    scores.minimalist += 2;
-
-}
-
-
-
-
-
-
-
-// =======================================
-// QUESTION 15
-// PRODUCT INTEREST
-// =======================================
-
-
-if (answers.q15 === "Skincare") {
-
-    scores.hydration += 2;
-
-}
-
-
-if (answers.q15 === "Self Care") {
-
-    scores.minimalist += 2;
-
-}
-
-
-
-
-
-
-
-// =======================================
-// QUESTION 16
-// ROUTINE STYLE
-// =======================================
-
-
-if (answers.q16 === "Simple") {
-
-    scores.minimalist += 3;
-
-}
-
-
-if (answers.q16 === "Balanced") {
-
-    scores.hydration += 2;
-
-}
-
-
-if (answers.q16 === "Advanced") {
-
-    scores.antiAging += 3;
-
-}
-
-
-
-
-
-
-
-// =======================================
-// QUESTION 17
-// 3 MONTH GOAL
-// =======================================
-
-
-if (answers.q17 === "Clear Skin") {
-
-    scores.acne += 4;
-
-}
-
-
-if (answers.q17 === "Brighter Skin") {
-
-    scores.brightening += 4;
-
-}
-
-
-if (answers.q17 === "Anti Aging") {
-
-    scores.antiAging += 4;
-
-}
-
-
-if (answers.q17 === "Healthy Glow") {
-
-    scores.hydration += 4;
-
-}
-
-// =======================================
-// PART 2/3
-// FRAGRANCE + BODY CARE SCORING
-// =======================================
-
-
-
-
-
-// =======================================
-// QUESTION 18
-// FRAGRANCE PREFERENCE
-// =======================================
-
-
-if (answers.q18 === "Scented") {
-
-    scores.scented += 4;
-
-}
-
-
-if (answers.q18 === "Light Scent") {
-
-    scores.lightScent += 4;
-
-}
-
-
-if (answers.q18 === "No Preference") {
-
-    scores.lightScent += 1;
-
-}
-
-
-if (answers.q18 === "Fragrance Free") {
-
-    scores.fragranceFree += 5;
-
-}
-
-
-
-
-
-
-
-// =======================================
-// QUESTION 19
-// REACTION TO SCENTED PRODUCTS
-// =======================================
-
-
-if (answers.q19 === "Handles Well") {
-
-    scores.scented += 3;
-
-}
-
-
-if (answers.q19 === "Sometimes Irritated") {
-
-    scores.fragranceFree += 3;
-
-}
-
-
-if (answers.q19 === "Sensitive") {
-
-    scores.fragranceFree += 5;
-
-}
-
-
-if (answers.q19 === "Only Fragrance Free") {
-
-    scores.fragranceFree += 6;
-
-}
-
-
-
-
-
-
-
-// =======================================
-// QUESTION 20
-// PRODUCT SCENT CHOICE
-// =======================================
-
-
-if (answers.q20 === "Sweet Scents") {
-
-    scores.scented += 4;
-
-}
-
-
-if (answers.q20 === "Mild Scents") {
-
-    scores.lightScent += 4;
-
-}
-
-
-if (answers.q20 === "Unscented") {
-
-    scores.fragranceFree += 5;
-
-}
-
-
-if (answers.q20 === "Fragrance Free") {
-
-    scores.fragranceFree += 6;
-
-}
-
-
-
-
-
-
-
-// =======================================
-// QUESTION 21
-// WHY CHOOSE SCENTED PRODUCTS
-// =======================================
-
-
-if (answers.q21 === "Relaxing") {
-
-    scores.scented += 3;
-
-}
-
-
-if (answers.q21 === "Fresh") {
-
-    scores.scented += 3;
-
-}
-
-
-if (answers.q21 === "Luxury") {
-
-    scores.scented += 3;
-
-}
-
-
-if (answers.q21 === "No Scent") {
-
-    scores.fragranceFree += 5;
-
-}
-
-
-
-
-
-
-
-// =======================================
-// QUESTION 22
-// WHY PREFER FRAGRANCE FREE
-// =======================================
-
-
-if (answers.q22 === "Sensitive Skin") {
-
-    scores.fragranceFree += 5;
-
-}
-
-
-if (answers.q22 === "Irritation") {
-
-    scores.fragranceFree += 5;
-
-}
-
-
-if (answers.q22 === "Simple Ingredients") {
-
-    scores.fragranceFree += 3;
-
-}
-
-
-if (answers.q22 === "No Added Scents") {
-
-    scores.fragranceFree += 5;
-
-}
-
-
-
-
-
-
-
-// =======================================
-// QUESTION 23
-// FAVORITE SCENT TYPE
-// =======================================
-
-
-if (answers.q23 === "Floral") {
-
-    scores.scented += 3;
-
-}
-
-
-if (answers.q23 === "Woody") {
-
-    scores.scented += 3;
-
-}
-
-
-if (answers.q23 === "Fresh") {
-
-    scores.lightScent += 3;
-
-}
-
-
-if (answers.q23 === "Sweet") {
-
-    scores.scented += 4;
-
-}
-
-
-if (answers.q23 === "Fragrance Free") {
-
-    scores.fragranceFree += 6;
-
-}
-
-
-
-
-
-
-
-// =======================================
-// QUESTION 24
-// BIGGEST SCENT CONCERN
-// =======================================
-
-
-if (answers.q24 === "Irritation") {
-
-    scores.fragranceFree += 5;
-
-}
-
-
-if (answers.q24 === "Allergies") {
-
-    scores.fragranceFree += 6;
-
-}
-
-
-if (answers.q24 === "Strong Smells") {
-
-    scores.lightScent += 3;
-
-}
-
-
-if (answers.q24 === "No Concerns") {
-
-    scores.scented += 2;
-
-}
-
-
-
-
-
-
-
-// =======================================
-// BODY SCRUB QUESTIONS
-// Q25 - Q31
-// =======================================
-
-
-
-
-
-// QUESTION 25
-// BODY EXFOLIATION FREQUENCY
-
-
-if (answers.q25 === "2-3 Weekly") {
-
-    scores.bodyScrub += 4;
-
-}
-
-
-if (answers.q25 === "Weekly") {
-
-    scores.bodyScrub += 3;
-
-}
-
-
-if (answers.q25 === "Occasionally") {
-
-    scores.bodyHydration += 2;
-
-}
-
-
-if (answers.q25 === "Never") {
-
-    scores.bodyHydration += 3;
-
-}
-
-
-
-
-
-
-
-// QUESTION 26
-// BODY SCRUB GOAL
-
-
-if (answers.q26 === "Soft Skin") {
-
-    scores.bodyHydration += 3;
-
-}
-
-
-if (answers.q26 === "Dry Skin") {
-
-    scores.bodyHydration += 5;
-
-}
-
-
-if (answers.q26 === "Rough Areas") {
-
-    scores.bodyScrub += 5;
-
-}
-
-
-if (answers.q26 === "Texture") {
-
-    scores.bodyScrub += 4;
-
-}
-
-
-
-
-
-
-
-// QUESTION 27
-// BODY SCRUB TYPE
-
-
-if (answers.q27 === "Sugar") {
-
-    scores.scented += 2;
-
-    scores.bodyScrub += 3;
-
-}
-
-
-if (answers.q27 === "Gentle") {
-
-    scores.bodyHydration += 3;
-
-}
-
-
-if (answers.q27 === "Deep") {
-
-    scores.bodyScrub += 5;
-
-}
-
-
-if (answers.q27 === "Sensitive") {
-
-    scores.fragranceFree += 4;
-
-}
-
-
-
-
-
-
-
-// QUESTION 28
-// BODY SCENT CONCERNS
-
-
-if (answers.q28 === "Irritation") {
-
-    scores.fragranceFree += 4;
-
-}
-
-
-if (answers.q28 === "Allergies") {
-
-    scores.fragranceFree += 5;
-
-}
-
-
-if (answers.q28 === "Strong Smell") {
-
-    scores.lightScent += 3;
-
-}
-
-
-if (answers.q28 === "None") {
-
-    scores.scented += 2;
-
-}
-
-
-
-
-
-
-
-// QUESTION 29
-// BODY SCRUB REACTION
-
-
-if (answers.q29 === "Smooth") {
-
-    scores.bodyScrub += 3;
-
-}
-
-
-if (answers.q29 === "Dry") {
-
-    scores.bodyHydration += 4;
-
-}
-
-
-if (answers.q29 === "Irritated") {
-
-    scores.fragranceFree += 4;
-
-}
-
-
-if (answers.q29 === "Never Used") {
-
-    scores.bodyHydration += 1;
-
-}
-
-
-
-
-
-
-
-// =======================================
-// BODY CREAM QUESTIONS
-// Q30 - Q35
-// =======================================
-
-
-
-
-
-// QUESTION 30
-// BODY CREAM TYPE
-
-
-if (answers.q30 === "Rich Cream") {
-
-    scores.bodyHydration += 5;
-
-}
-
-
-if (answers.q30 === "Light Lotion") {
-
-    scores.bodyHydration += 3;
-
-}
-
-
-if (answers.q30 === "Calming") {
-
-    scores.fragranceFree += 3;
-
-}
-
-
-if (answers.q30 === "No Fragrance") {
-
-    scores.fragranceFree += 5;
-
-}
-
-
-
-
-
-
-
-// QUESTION 31
-// SCRUB TEXTURE
-
-
-if (answers.q31 === "Deep") {
-
-    scores.bodyScrub += 4;
-
-}
-
-
-if (answers.q31 === "Gentle") {
-
-    scores.bodyHydration += 3;
-
-}
-
-
-if (answers.q31 === "Moisturizing") {
-
-    scores.bodyHydration += 4;
-
-}
-
-
-if (answers.q31 === "None") {
-
-    scores.minimalist += 1;
-
-}
-
-
-
-
-
-
-
-// QUESTION 32
-// BODY CREAM PREFERENCE
-
-
-if (answers.q32 === "Deep Moisture") {
-
-    scores.bodyHydration += 5;
-
-}
-
-
-if (answers.q32 === "Light") {
-
-    scores.bodyHydration += 2;
-
-}
-
-
-if (answers.q32 === "Sensitive") {
-
-    scores.fragranceFree += 4;
-
-}
-
-
-if (answers.q32 === "Fragrance Free") {
-
-    scores.fragranceFree += 5;
-
-}
-
-
-
-
-
-
-
-// QUESTION 33
-// WHEN APPLY BODY CREAM
-
-
-if (answers.q33 === "After Shower") {
-
-    scores.bodyHydration += 3;
-
-}
-
-
-if (answers.q33 === "Dry Skin") {
-
-    scores.bodyHydration += 4;
-
-}
-
-
-if (answers.q33 === "Before Bed") {
-
-    scores.scented += 1;
-
-}
-
-
-if (answers.q33 === "Never") {
-
-    scores.minimalist += 1;
-
-}
-
-
-
-
-
-
-
-// QUESTION 34
-// BODY CREAM GOAL
-
-
-if (answers.q34 === "Hydration") {
-
-    scores.bodyHydration += 5;
-
-}
-
-
-if (answers.q34 === "Repair") {
-
-    scores.bodyHydration += 4;
-
-}
-
-
-if (answers.q34 === "Texture") {
-
-    scores.bodyScrub += 3;
-
-}
-
-
-if (answers.q34 === "Comfort") {
-
-    scores.fragranceFree += 4;
-
-}
-
-
-
-
-
-
-
-// QUESTION 35
-// INGREDIENT PREFERENCE
-
-
-if (answers.q35 === "Butters") {
-
-    scores.bodyHydration += 5;
-
-}
-
-
-if (answers.q35 === "Hydration") {
-
-    scores.bodyHydration += 5;
-
-}
-
-
-if (answers.q35 === "Aloe") {
-
-    scores.fragranceFree += 3;
-
-}
-
-
-if (answers.q35 === "Fragrance Free") {
-
-    scores.fragranceFree += 5;
-
-}
-
-// =======================================
-// PART 3/3
-// CREATE FINAL RESULTS
-// =======================================
-
-
-
-// Find highest skincare routine score
-
-let skincareScores = {
-
-    hydration: scores.hydration,
-
-    acne: scores.acne,
-
-    sensitive: scores.sensitive,
-
-    antiAging: scores.antiAging,
-
-    brightening: scores.brightening,
-
-    minimalist: scores.minimalist
-
-};
-
-
-
-let highestRoutine = Object.keys(skincareScores).reduce((a,b)=>{
-
-    return skincareScores[a] >= skincareScores[b] ? a : b;
-
-});
-
-
-
-
-
-
-
-// =======================================
-// CREATE SKINCARE ROUTINE RESULT
-// =======================================
-
-
-switch(highestRoutine){
-
-
-
-case "hydration":
-
-
-routineTitle = "💧 Hydration Glow Routine";
-
-
-routineDescription =
-"Your answers show that your skin needs moisture, nourishment, and barrier support to maintain a healthy glow.";
-
-
-routineSteps = [
-
-"1. Gentle hydrating cleanser",
-
-"2. Hyaluronic acid serum",
-
-"3. Ceramide moisturizer",
-
-"4. Hydrating body cream",
-
-"5. Daily SPF"
-
-];
-
-
-products = [
-
-"Hydrating cleanser",
-
-"Hyaluronic acid serum",
-
-"Ceramide moisturizer",
-
-"Moisturizing body cream"
-
-];
-
-
-break;
-
-
-
-
-
-case "acne":
-
-
-routineTitle = "✨ Clear Skin Routine";
-
-
-routineDescription =
-"Your results focus on reducing breakouts, controlling excess oil, and keeping pores clear.";
-
-
-routineSteps = [
-
-"1. Gentle cleanser",
-
-"2. Salicylic acid or BHA treatment",
-
-"3. Niacinamide serum",
-
-"4. Lightweight moisturizer",
-
-"5. Daily SPF"
-
-];
-
-
-products = [
-
-"Salicylic acid cleanser",
-
-"Niacinamide serum",
-
-"Oil-free moisturizer"
-
-];
-
-
-break;
-
-
-
-
-
-
-
-case "sensitive":
-
-
-routineTitle = "🌿 Sensitive Skin Routine";
-
-
-routineDescription =
-"Your skin profile suggests choosing calming products that protect your skin barrier and avoid irritation.";
-
-
-routineSteps = [
-
-"1. Fragrance-free cleanser",
-
-"2. Soothing serum",
-
-"3. Barrier repair moisturizer",
-
-"4. Gentle body cream",
-
-"5. Mineral sunscreen"
-
-];
-
-
-products = [
-
-"Aloe soothing products",
-
-"Ceramide moisturizer",
-
-"Fragrance-free skincare"
-
-];
-
-
-break;
-
-
-
-
-
-
-
-case "antiAging":
-
-
-routineTitle = "💎 Anti-Aging Renewal Routine";
-
-
-routineDescription =
-"Your results show a focus on supporting firmness, smooth texture, and healthy aging.";
-
-
-routineSteps = [
-
-"1. Gentle cleanser",
-
-"2. Vitamin C serum",
-
-"3. Retinol treatment",
-
-"4. Peptide moisturizer",
-
-"5. Daily SPF"
-
-];
-
-
-products = [
-
-"Vitamin C serum",
-
-"Retinol cream",
-
-"Peptide moisturizer"
-
-];
-
-
-break;
-
-
-
-
-
-
-
-case "brightening":
-
-
-routineTitle = "✨ Brightening Glow Routine";
-
-
-routineDescription =
-"Your skin goals focus on improving radiance, uneven tone, and achieving a brighter complexion.";
-
-
-routineSteps = [
-
-"1. Brightening cleanser",
-
-"2. Vitamin C serum",
-
-"3. Niacinamide serum",
-
-"4. Moisturizer",
-
-"5. SPF"
-
-];
-
-
-products = [
-
-"Vitamin C serum",
-
-"Niacinamide serum",
-
-"Brightening moisturizer"
-
-];
-
-
-break;
-
-
-
-
-
-
-
-default:
-
-
-routineTitle = "🌸 Minimalist Beauty Routine";
-
-
-routineDescription =
-"Your results suggest a simple routine that maintains balanced and healthy-looking skin.";
-
-
-routineSteps = [
-
-"1. Gentle cleanser",
-
-"2. Moisturizer",
-
-"3. Daily SPF"
-
-];
-
-
-products = [
-
-"Simple cleanser",
-
-"Light moisturizer",
-
-"Sunscreen"
-
-];
-
-
-}
-
-
-
-
-
-
-
-// =======================================
-// FRAGRANCE RESULT
-// =======================================
-
-
-if(scores.fragranceFree > scores.scented && 
-   scores.fragranceFree > scores.lightScent){
-
-
-fragranceRecommendation =
-"🌿 Fragrance Profile: Your skin preferences suggest fragrance-free products to help avoid possible irritation.";
-
-
-}
-
-
-
-else if(scores.scented > scores.fragranceFree){
-
-
-fragranceRecommendation =
-"🌸 Fragrance Profile: You enjoy scented skincare with floral, fruity, sweet, or relaxing aromas.";
-
-
-}
-
-
-
-else{
-
-
-fragranceRecommendation =
-"✨ Fragrance Profile: You may enjoy lightly scented products with gentle aromas.";
-
-
-}
-
-
-
-
-
-
-
-// =======================================
-// BODY CARE RESULT
-// =======================================
-
-
-if(scores.bodyHydration > scores.bodyScrub){
-
-
-bodyRecommendation =
-"🧴 Body Care Profile: Your results suggest rich moisturizing products that focus on softness and hydration.";
-
-
-}
-
-
-
-else if(scores.bodyScrub > scores.bodyHydration){
-
-
-bodyRecommendation =
-"✨ Body Care Profile: Your results suggest exfoliating products that improve texture and smooth rough areas.";
-
-
-}
-
-
-
-else{
-
-
-bodyRecommendation =
-"🌸 Body Care Profile: A balanced combination of exfoliation and hydration would work well for you.";
-
-
-}
-
-
-
-
-
-
-
-// =======================================
-// DISPLAY RESULTS
-// =======================================
-
-
-document.getElementById("routineTitle").textContent =
-routineTitle;
-
-
-
-document.getElementById("routineDescription").textContent =
-routineDescription;
-
-
-
-
-
-const stepsList = document.getElementById("routineSteps");
-
-
-routineSteps.forEach(step=>{
-
-
-let li = document.createElement("li");
-
-
-li.textContent = step;
-
-
-stepsList.appendChild(li);
-
-
-});
-
-
-
-
-
-const productList = document.getElementById("products");
-
-
-products.forEach(product=>{
-
-
-let li = document.createElement("li");
-
-
-li.textContent = product;
-
-
-productList.appendChild(li);
-
-
-});
-
-
-
-
-
-
-// Display fragrance and body results
-
-
-document.getElementById("fragranceResult").textContent =
-fragranceRecommendation;
-
-
-
-document.getElementById("bodyResult").textContent =
-bodyRecommendation;
-
-
-
-
-
-
-
-// =======================================
-// RESTART QUIZ
-// =======================================
-
-
-function restartQuiz(){
-
-
-localStorage.clear();
-
-
-window.location.href = "quiz.html";
-
-
-}
