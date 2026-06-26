@@ -6,237 +6,362 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Your Beauty Care Results</title>
-
-<link rel="stylesheet" href="style.css">
+<title>Your Beauty Results</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
-
 <style>
 
-body {
+body{
 
-    margin:0;
-    font-family:'Poppins',sans-serif;
-    background:linear-gradient(to bottom,#ffe4ec,#ffd1e0);
-    color:#333;
-
-}
-
-
-
-.header {
-
-    text-align:center;
-    padding:25px;
-    background:#ffe9f1;
+margin:0;
+font-family:Poppins,sans-serif;
+background:#fff3f7;
 
 }
 
+header{
 
-
-.header h1 {
-
-    font-family:'Great Vibes',cursive;
-    font-size:42px;
-    color:#c2185b;
-    margin:0;
+background:#ffdbe8;
+padding:30px;
+text-align:center;
 
 }
 
+header h1{
 
-
-.header img {
-
-    width:100%;
-    max-width:500px;
-    border-radius:15px;
-    margin-top:15px;
+font-family:'Great Vibes';
+font-size:48px;
+color:#c2185b;
 
 }
 
+.container{
 
-
-.container {
-
-    width:90%;
-    max-width:700px;
-    margin:40px auto;
-    background:white;
-    padding:30px;
-    border-radius:15px;
-    box-shadow:0 6px 20px rgba(0,0,0,.1);
+max-width:900px;
+margin:auto;
+padding:30px;
 
 }
 
+.card{
 
-
-h2 {
-
-    text-align:center;
-    color:#8a2b55;
-
-}
-
-
-
-.result-box {
-
-    background:#fff0f5;
-    padding:25px;
-    border-radius:12px;
-    margin-top:25px;
+background:white;
+margin-bottom:25px;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 18px rgba(0,0,0,.08);
 
 }
 
+.card h2{
 
-
-h3 {
-
-    color:#c2185b;
-    margin-top:25px;
+color:#c2185b;
+margin-top:0;
 
 }
 
+ul{
 
-
-p {
-
-    line-height:1.7;
+padding-left:20px;
 
 }
 
+.progress{
 
-
-ul {
-
-    line-height:1.8;
-
-}
-
-
-
-button {
-
-    width:100%;
-    margin-top:30px;
-    padding:14px;
-    border:none;
-    border-radius:8px;
-    background:#d81b60;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
+height:25px;
+background:#eee;
+border-radius:20px;
+overflow:hidden;
 
 }
 
+.progress-bar{
 
-
-button:hover {
-
-    background:#b31550;
+height:100%;
+width:0%;
+background:#d81b60;
+color:white;
+text-align:center;
+line-height:25px;
+transition:.8s;
 
 }
 
+button{
+
+padding:12px 25px;
+background:#d81b60;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#b31550;
+
+}
+
+span{
+
+font-weight:bold;
+color:#8a2b55;
+
+}
 
 </style>
 
 </head>
 
-
-
 <body>
 
+<header>
 
+<h1>Your Personalized Beauty Plan</h1>
 
-<div class="header">
+<p>Based on your Beauty Assessment</p>
 
-<h1>
-Britani R's Beauty Care Results
-</h1>
-
-
-<img src="images/skin care routine.jpg"
-alt="Beauty Care Results">
-
-</div>
-
-
-
+</header>
 
 <div class="container">
 
+<div class="card">
 
-<h2>
-Your Personalized Beauty Routine
-</h2>
+<h2>🌸 Skin Profile</h2>
 
+<p><strong>Age:</strong> <span id="age"></span></p>
 
+<p><strong>Main Goal:</strong> <span id="goal"></span></p>
 
-<div class="result-box">
+<p><strong>Routine:</strong> <span id="routine"></span></p>
 
+<p><strong>Skin Texture:</strong> <span id="texture"></span></p>
 
+<p><strong>Sensitivity:</strong> <span id="sensitive"></span></p>
 
-<h3 id="routineTitle">
-Loading your results...
-</h3>
-
-
-
-<p id="routineDescription">
-</p>
-
-
-
-
-<h3>
-Your Recommended Routine
-</h3>
-
-
-<ul id="routineSteps">
-
-</ul>
-
-
-
-
-
-<h3>
-Product Suggestions
-</h3>
-
-
-<ul id="products">
-
-</ul>
-
-
+<p><strong>Breakouts:</strong> <span id="breakouts"></span></p>
 
 </div>
 
+<div class="card">
 
+<h2>✨ Your Skin Concerns</h2>
 
+<ul id="concerns"></ul>
 
+</div>
 
-<button onclick="restartQuiz()">
+<div class="card">
 
-Retake Assessment
+<h2>☀ Morning Routine</h2>
+
+<ul id="morningRoutine"></ul>
+
+</div>
+
+<div class="card">
+
+<h2>🌙 Night Routine</h2>
+
+<ul id="nightRoutine"></ul>
+
+</div>
+
+<div class="card">
+
+<h2>💧 Recommended Ingredients</h2>
+
+<ul id="ingredients"></ul>
+
+</div>
+
+<div class="card">
+
+<h2>🚫 Ingredients To Avoid</h2>
+
+<ul id="avoid"></ul>
+
+</div>
+
+<div class="card">
+
+<h2>🧴 Product Suggestions</h2>
+
+<ul id="products"></ul>
+
+</div>
+
+<div class="card">
+
+<h2>🛁 Body Care Recommendations</h2>
+
+<ul id="bodycare"></ul>
+
+</div>
+
+<div class="card">
+
+<h2>❤️ Lifestyle Tips</h2>
+
+<ul id="tips"></ul>
+
+</div>
+
+<div class="card">
+
+<h2>Your Beauty Match Score</h2>
+
+<div class="progress">
+
+<div class="progress-bar" id="scoreBar">0%</div>
+
+</div>
+
+<p id="scoreText"></p>
+
+</div>
+
+<center>
+
+<button onclick="window.location='quiz.html'">
+
+Take Quiz Again
 
 </button>
 
-
+</center>
 
 </div>
 
+<script>
 
+const data = JSON.parse(localStorage.getItem("beautyQuiz"));
 
+document.getElementById("age").textContent=data.q1;
+document.getElementById("goal").textContent=data.q2;
+document.getElementById("routine").textContent=data.q16;
+document.getElementById("texture").textContent=data.q6;
+document.getElementById("sensitive").textContent=data.q9;
+document.getElementById("breakouts").textContent=data.q8;
 
+data.concerns.forEach(item=>{
 
-<script src="results.js"></script>
+let li=document.createElement("li");
+li.textContent=item;
+document.getElementById("concerns").appendChild(li);
 
+});
+
+function add(list,id){
+
+list.forEach(text=>{
+
+let li=document.createElement("li");
+li.textContent=text;
+document.getElementById(id).appendChild(li);
+
+});
+
+}
+
+add([
+"Gentle Cleanser",
+"Vitamin C Serum",
+"Moisturizer",
+"SPF 30+ Sunscreen"
+],"morningRoutine");
+
+add([
+"Cleanser",
+"Treatment Serum",
+"Night Moisturizer"
+],"nightRoutine");
+
+let ingredients=[];
+
+if(data.q2=="Hydration"){
+
+ingredients=[
+"Hyaluronic Acid",
+"Ceramides",
+"Glycerin"
+];
+
+}
+
+if(data.q2=="Anti Aging"){
+
+ingredients=[
+"Retinol",
+"Peptides",
+"Vitamin C"
+];
+
+}
+
+if(data.q2=="Acne"){
+
+ingredients=[
+"Salicylic Acid",
+"Niacinamide",
+"Zinc"
+];
+
+}
+
+if(data.q2=="Brightening"){
+
+ingredients=[
+"Vitamin C",
+"Alpha Arbutin",
+"Niacinamide"
+];
+
+}
+
+add(ingredients,"ingredients");
+
+add([
+"Harsh Alcohols",
+"Over Exfoliating",
+"Heavy Fragrance (if sensitive)"
+],"avoid");
+
+add([
+"Gentle Cleanser",
+"Hydrating Serum",
+"Ceramide Moisturizer",
+"Broad Spectrum Sunscreen"
+],"products");
+
+add([
+"Weekly Body Scrub",
+"Daily Body Cream",
+"Moisturizing Body Wash"
+],"bodycare");
+
+add([
+"Drink 8 glasses of water",
+"Sleep 7-9 hours",
+"Wash makeup brushes weekly",
+"Never skip sunscreen"
+],"tips");
+
+let score=90;
+
+if(data.q10=="High Water") score+=5;
+if(data.q9=="Very Sensitive") score-=5;
+
+document.getElementById("scoreBar").style.width=score+"%";
+document.getElementById("scoreBar").innerHTML=score+"%";
+
+document.getElementById("scoreText").innerHTML="Your skincare routine is a <strong>"+score+"%</strong> match for your goals!";
+
+</script>
 
 </body>
-
 </html>
